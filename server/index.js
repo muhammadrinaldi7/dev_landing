@@ -8,7 +8,7 @@ app.use(cors());
 
 const database = mysqli.createConnection({
     host: process.env.DB_HOST, // Menggunakan variabel lingkungan untuk host
-    user: process.env.DB_USER, // Menggunakan variabel lingkungan untuk nama pengguna
+    user: process.env.DB_USERNAME, // Menggunakan variabel lingkungan untuk nama pengguna
     password: process.env.DB_PASSWORD, // Menggunakan variabel lingkungan untuk kata sandi
     database: process.env.DB_NAME,
 });
