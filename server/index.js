@@ -7,9 +7,9 @@ app.use(cors());
 
 const database = mysqli.createConnection({
     host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'db_sekolah',
+    user: 'id21722987_devrn',
+    password: '#Mrinaldi1234',
+    database: 'id21722987_db_devrn',
 });
 
 database.connect(err => {
