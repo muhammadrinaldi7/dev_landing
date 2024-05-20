@@ -8,7 +8,7 @@ export default function Navbar() {
   const [menus, setMenus] = useState([]);
   const getMenu = () => {
     axios
-      .get("http://localhost:3001/api/v1/menus")
+      .get("https://dev-landing-serv-api.vercel.app/api/v1/menus")
       .then((res) => {
         setMenus(res.data.data);
         console.log(menus);

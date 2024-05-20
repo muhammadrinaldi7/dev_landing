@@ -22,7 +22,7 @@ const Product = () => {
 
   const getCatalog = () => {
     axios
-      .get("http://localhost:3001/api/v1/cars")
+      .get("https://dev-landing-serv-api.vercel.app/api/v1/cars")
       .then((response) => {
         setCatalog(response.data.data);
         console.log(response.data.data);
