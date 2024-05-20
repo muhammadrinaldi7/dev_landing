@@ -28,7 +28,7 @@ const ProductCard = ({ name, image, model, price, year, status }) => {
           <img
             className="w-full flex-shrink-0 scale-90"
             style={{ height: "200px", objectFit: "cover" }}
-            src={image}
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcms.daihatsu.co.id%2Fuploads%2Fproduct%2FThumbnail%25201585112208996.png&f=1&nofb=1&ipt=79c8d0f3c81f917556fe1acad92b3c594aced00b4d0f49fbc209ad443981e3dc&ipo=images"
             alt={name}
           />
         </div>
