@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas, far, fal } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 const ProductCard = ({ name, image, model, price, year, status }) => {
   const whatsappUrl = `https://wa.me/+62895705038835?text=Saya%20ingin%20booking%20mobil%20${encodeURIComponent(
@@ -56,7 +56,7 @@ const ProductCard = ({ name, image, model, price, year, status }) => {
             data-ripple-light="true"
             className="select-none disabled rounded-lg bg-[#25D366] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           >
-            <FontAwesomeIcon icon={fas.faWhatsapp} className="mr-2" />
+            <FontAwesomeIcon icon={faWhatsapp} size="xl" className="mr-2" />
             Booking Sekarang
           </a>
         </div>
