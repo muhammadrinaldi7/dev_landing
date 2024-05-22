@@ -1,16 +1,12 @@
-import express  from 'express';
-import mysqli from 'mysql';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import jwt from 'jsonwebtoken';
-import multer from 'multer';
-import fs from 'fs';
+require('dotenv').config();
 
 
+const express = require('express');
+const mysqli = require('mysql');
 const app = express();
+const cors = require('cors');
+
 app.use(cors());
-app.use(express.json());
-app.use(bodyParser.json());
 
 const database = mysqli.createConnection({
     host: process.env.DB_HOST, // Menggunakan variabel lingkungan untuk host
