@@ -28,7 +28,7 @@ export const AddCars = () => {
     formData.append("status", status);
 
     try {
-      await axios.post("http://localhost:3001/api/v1/cars", formData, {
+      await axios.post(`${import.meta.env.VITE_REACT_API_URL}/cars`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
