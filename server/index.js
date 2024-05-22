@@ -5,11 +5,14 @@ const express = require('express');
 const mysqli = require('mysql');
 const app = express();
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const fs = require('fs');
 
 app.use(cors());
+app.use(express.json());
+app.use(bodyParser.json());
 
 const database = mysqli.createConnection({
     host: process.env.DB_HOST, // Menggunakan variabel lingkungan untuk host
