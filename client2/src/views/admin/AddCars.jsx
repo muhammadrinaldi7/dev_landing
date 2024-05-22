@@ -35,7 +35,7 @@ export const AddCars = () => {
       });
       navigate("/dashboard");
     } catch (error) {
-      console.log(error);
+      console.log("error ini nah", error);
     }
   };
 
