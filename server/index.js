@@ -5,6 +5,9 @@ const express = require('express');
 const mysqli = require('mysql');
 const app = express();
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const fs = require('fs');
 
 app.use(cors());
 
