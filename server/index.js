@@ -87,7 +87,7 @@ app.post("/api/v1/cars", upload.single('image'), (req, res) => {
         if (err) {
           // Hapus file yang sudah diunggah jika terjadi kesalahan saat menyimpan ke database
           fs.unlinkSync(req.file.path);
-          console.log('error', err);
+          console.log('error query', err);
           return res.status(500).json({ success: false, message: "Gagal menambahkan mobil", error: err });
         }
         res.status(201).json({
