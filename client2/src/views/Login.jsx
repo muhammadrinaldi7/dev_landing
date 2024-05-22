@@ -20,10 +20,13 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/api/v1/login", {
-        username: Username,
-        password: Password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_REACT_API_URL}/login`,
+        {
+          username: Username,
+          password: Password,
+        }
+      );
       setStatus(response.data.message);
       localStorage.setItem("username", Username);
       setTimeout(() => {
