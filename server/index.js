@@ -45,20 +45,20 @@ app.get("/api/v1/cars", (req, res)=>{
     });
 });
 
-app.get("/api/v1/cars/:id", (req, res) => {
-    const carId = req.params.id;
-    database.query("SELECT * FROM cars WHERE id = ?", [carId], (err, result) => {
-      if (err) throw err;
-      if (result.length === 0) {
-        return res.status(404).json({ success: false, message: "Car not found" });
-      }
-      res.json({
-        status: 200,
-        success: true,
-        data: result[0],
-      });
-    });
-  });
+// app.get("/api/v1/cars/:id", (req, res) => {
+//     const carId = req.params.id;
+//     database.query("SELECT * FROM cars WHERE id = ?", [carId], (err, result) => {
+//       if (err) throw err;
+//       if (result.length === 0) {
+//         return res.status(404).json({ success: false, message: "Car not found" });
+//       }
+//       res.json({
+//         status: 200,
+//         success: true,
+//         data: result[0],
+//       });
+//     });
+//   });
 
 // CRUD
 // MENAMBAHKAN MOBIL ATAU FITUR CREATE ATAU API UNTUK CREATE MOBIL
@@ -136,46 +136,46 @@ app.get("/api/v1/cars/:id", (req, res) => {
 //   });
   
 
-app.get("/api/v1/users", (req, res)=>{
-    database.query("SELECT * FROM user", (err, result)=>{
-        if(err) throw err;
-        res.json({
-            success: true,
-            message:"success",
-            status: 200,
-            data: result,
-        });
-    });
-});
+// app.get("/api/v1/users", (req, res)=>{
+//     database.query("SELECT * FROM user", (err, result)=>{
+//         if(err) throw err;
+//         res.json({
+//             success: true,
+//             message:"success",
+//             status: 200,
+//             data: result,
+//         });
+//     });
+// });
 
-app.post("/api/v1/login", (req, res) => {
-    const { username, password } = req.body;
-    if (!username || !password) {
-        return res.status(400).json({ message: "Username and password are required" });
-    }
+// app.post("/api/v1/login", (req, res) => {
+//     const { username, password } = req.body;
+//     if (!username || !password) {
+//         return res.status(400).json({ message: "Username and password are required" });
+//     }
 
-    database.query("SELECT * FROM user WHERE username = ?", [username], (err, result) => {
-        if (err) throw err;
-        if (result.length === 0) {
-            return res.status(401).json({ message: "Akun Tidak Ditemukan" });
-        }
+//     database.query("SELECT * FROM user WHERE username = ?", [username], (err, result) => {
+//         if (err) throw err;
+//         if (result.length === 0) {
+//             return res.status(401).json({ message: "Akun Tidak Ditemukan" });
+//         }
 
-        const user = result[0];
-        // Compare plain text password
-        if (password !== user.password) {
-            return res.status(401).json({ message: "Password Salah" });
-        }
+//         const user = result[0];
+//         // Compare plain text password
+//         if (password !== user.password) {
+//             return res.status(401).json({ message: "Password Salah" });
+//         }
 
-        const token = jwt.sign({ username }, 'your_secret_key', { expiresIn: '1h' });
+//         const token = jwt.sign({ username }, 'your_secret_key', { expiresIn: '1h' });
 
-        res.json({
-            success: true,
-            message: "Login successful",
-            status: 200,
-            data: { token },
-        });
-    });
-});
+//         res.json({
+//             success: true,
+//             message: "Login successful",
+//             status: 200,
+//             data: { token },
+//         });
+//     });
+// });
 
 const port = process.env.PORT || 5000;
 
