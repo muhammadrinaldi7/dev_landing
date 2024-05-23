@@ -35,7 +35,7 @@ export const AddCars = () => {
       });
       navigate("/dashboard");
     } catch (error) {
-      console.log("error ini nah", error);
+      console.error("Gagal menambahkan mobil:", error);
     }
   };
 
@@ -44,12 +44,15 @@ export const AddCars = () => {
       <div className="container p-10 w-[80%] mx-auto">
         <form onSubmit={handleSubmit}>
           <div className="mt-6">
-            <label className="sr-only" htmlFor="name">
-              Model Mobil
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="make"
+            >
+              Merek Mobil
             </label>
             <input
-              className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Model Mobil"
+              className="w-full rounded-lg border-gray-300 p-3 text-sm"
+              placeholder="Masukkan merek mobil"
               type="text"
               id="make"
               value={make}
@@ -57,12 +60,15 @@ export const AddCars = () => {
             />
           </div>
           <div className="mt-6">
-            <label className="sr-only" htmlFor="name">
-              Nama Mobil
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="model"
+            >
+              Model Mobil
             </label>
             <input
-              className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Nama Mobil"
+              className="w-full rounded-lg border-gray-300 p-3 text-sm"
+              placeholder="Masukkan model mobil"
               type="text"
               id="model"
               value={model}
@@ -70,12 +76,15 @@ export const AddCars = () => {
             />
           </div>
           <div className="mt-6">
-            <label className="sr-only" htmlFor="name">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="year"
+            >
               Tahun
             </label>
             <input
-              className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Tahun"
+              className="w-full rounded-lg border-gray-300 p-3 text-sm"
+              placeholder="Masukkan tahun pembuatan"
               type="text"
               id="year"
               value={year}
@@ -83,12 +92,15 @@ export const AddCars = () => {
             />
           </div>
           <div className="mt-6">
-            <label className="sr-only" htmlFor="name">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="color"
+            >
               Warna
             </label>
             <input
-              className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Warna"
+              className="w-full rounded-lg border-gray-300 p-3 text-sm"
+              placeholder="Masukkan warna mobil"
               type="text"
               id="color"
               value={color}
@@ -96,12 +108,15 @@ export const AddCars = () => {
             />
           </div>
           <div className="mt-6">
-            <label className="sr-only" htmlFor="name">
-              No Polisi
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="registration_number"
+            >
+              Nomor Registrasi
             </label>
             <input
-              className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="No Polisi"
+              className="w-full rounded-lg border-gray-300 p-3 text-sm"
+              placeholder="Masukkan nomor registrasi"
               type="text"
               id="registration_number"
               value={registration_number}
@@ -109,12 +124,15 @@ export const AddCars = () => {
             />
           </div>
           <div className="mt-6">
-            <label className="sr-only" htmlFor="name">
-              Harga
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="daily_rate"
+            >
+              Tarif Harian
             </label>
             <input
-              className="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Harga"
+              className="w-full rounded-lg border-gray-300 p-3 text-sm"
+              placeholder="Masukkan tarif harian"
               type="text"
               id="daily_rate"
               value={daily_rate}
@@ -122,8 +140,11 @@ export const AddCars = () => {
             />
           </div>
           <div className="mt-6">
-            <label className="sr-only" htmlFor="name">
-              Foto
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="image_url"
+            >
+              Foto Mobil
             </label>
             <input
               type="file"
@@ -133,8 +154,11 @@ export const AddCars = () => {
             />
           </div>
           <div className="mt-6">
-            <label className="sr-only" htmlFor="name">
-              Status
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="status"
+            >
+              Status Mobil
             </label>
             <select
               className="select select-info w-full max-w-xs"
@@ -156,13 +180,13 @@ export const AddCars = () => {
               to="/dashboard"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              Cancel
+              Batal
             </Link>
             <button
               type="submit"
               className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Save
+              Simpan
             </button>
           </div>
         </form>
