@@ -40,7 +40,7 @@ app.get("/api/v1/menus",(req, res)=>{
 
 app.get("/api/v1/cars", (req, res)=>{
     database.query("SELECT * FROM cars", (err, result)=>{
-        if(err) throw err;
+        if(err) throw "error query",err;
         res.json({
             data: result,
         });
