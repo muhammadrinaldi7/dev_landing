@@ -69,7 +69,7 @@ const storage = multer.diskStorage({
       cb(null, 'uploads/'); // Direktori penyimpanan file
     },
     filename: function (req, file, cb) {
-      cb(null, Date.now() + '-' + file.originalname); // Nama file yang disimpan dengan timestamp untuk menghindari duplikasi
+      cb(null, file.originalname); // Nama file yang disimpan
     }
   });
   const upload = multer({ storage: storage });
@@ -78,20 +78,15 @@ const storage = multer.diskStorage({
 
 app.post("/api/v1/cars", upload.single('image'), (req, res) => {
     const { make, model, year, color, registration_number, daily_rate, status } = req.body;
-    const image_url = req.file ? `/uploads/${req.file.filename}` : null; // Menangani kasus ketika file tidak diunggah
+    const image_url = `/uploads/${req.file.filename}`;
   
     database.query(
       "INSERT INTO cars (make, model, year, color, registration_number, daily_rate, image_url, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
       [make, model, year, color, registration_number, daily_rate, image_url, status],
       (err, result) => {
         if (err) {
-          if (req.file) {
-            fs.unlink(req.file.path, unlinkErr => {
-              if (unlinkErr) {
-                console.log('Gagal menghapus file yang diunggah', unlinkErr);
-              }
-            });
-          }
+          // Hapus file yang sudah diunggah jika terjadi kesalahan saat menyimpan ke database
+          fs.unlinkSync(req.file.path);
           console.log('error query', err);
           return res.status(500).json({ success: false, message: "Gagal menambahkan mobil", error: err });
         }
