@@ -12,14 +12,7 @@ export const AddCars = () => {
   const [daily_rate, setDailyRate] = useState("");
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState("Available");
-  const [preview, setPreview] = useState(null);
   const navigate = useNavigate();
-
-  const loadimage = (e) => {
-    const image = e.target.files[0];
-    setFile(image);
-    setPreview(URL.createObjectURL(image));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -157,16 +150,9 @@ export const AddCars = () => {
               type="file"
               className="file-input file-input-bordered file-input-primary w-full max-w-xs"
               id="file"
-              onChange={(e) => loadimage(e)}
+              onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
-          {preview ? (
-            <figure>
-              <img src={preview} alt="preview" className="w-20 h-20" />
-            </figure>
-          ) : (
-            "No image selected"
-          )}
           <div className="mt-6">
             <label
               className="block text-sm font-medium text-gray-700"
