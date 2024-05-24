@@ -3,6 +3,9 @@ import fileUpload from "express-fileupload";
 import cors from "cors";
 import CarsRoute from "./routes/CarsRoute.js";
 import UsersRoute from "./routes/UserRoute.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
