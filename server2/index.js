@@ -22,6 +22,6 @@ app.listen(PORT, () => {
   try {
     console.log(`Server running on port ${PORT}..`);
   } catch (error) {
-    console.log(error);
+    console.log("Error Bagian Index:", error);
   }
 });
