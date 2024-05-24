@@ -1,4 +1,7 @@
 import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const db = new Sequelize( {
   database:process.env.DB_NAME,
@@ -6,6 +9,7 @@ const db = new Sequelize( {
   password:process.env.DB_PASSWORD,
   host: process.env.DB_HOST,
   dialect: "mysql",
+  dialectModule: require("mysql2"),
 });
 
 export default db;
