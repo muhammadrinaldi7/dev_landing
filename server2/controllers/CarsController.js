@@ -36,7 +36,7 @@ export const saveCar = async (req, res) => {
   const filesize = file.data.length;
   const ext = path.extname(file.name);
   const filename = file.md5 + ext;
-  const url = `${import.meta.env.VITE_REACT_API_URL}/images/${filename}`;
+  const url = `${req.protocol}://${req.get('host')}/images/${filename}`;
   console.log(url);
 
   const allowedTypes = ['.jpg','.png','.jpeg','.gif'];
