@@ -22,8 +22,8 @@ export const Product = () => {
     axios
       .get(`${import.meta.env.VITE_REACT_API_URL}/cars`)
       .then((response) => {
-        setCatalog(response.data.data);
-        console.log(response.data.data);
+        setCatalog(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -36,19 +36,19 @@ export const Product = () => {
     <>
       <section
         id="Product"
-        className="pt-20 min-h-screen flex border flex-col flex-wrap mb-20 items-center justify-center bg-[#FFFF]"
+        className="pt-20 min-h-screen flex flex-col flex-wrap mb-20 items-center justify-center bg-[#FFFF]"
       >
         <div>
           <h1 className="text-center font-extrabold text-5xl">
             Daftar Mobil Kami
           </h1>
         </div>
-        <div className="flex flex-wrap mt-[3%]">
+        <div className="flex flex-wrap justify-center w-full box-border mt-[3%]">
           {catalog?.map((catalog) => (
             <ProductCard
-              key={catalog.car_id}
+              key={catalog.id}
               name={catalog.make}
-              image={catalog.image}
+              image={catalog.url}
               price={catalog.daily_rate}
               model={catalog.model}
               year={catalog.year}

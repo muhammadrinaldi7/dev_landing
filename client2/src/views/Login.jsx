@@ -21,7 +21,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_REACT_API_URL}/login`,
+        `${import.meta.env.VITE_REACT_API_URL}/users/login`,
         {
           username: Username,
           password: Password,
@@ -38,16 +38,13 @@ const Login = () => {
   };
   return (
     <>
-      <section id="Login">
-        <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <section id="Login" className="w-full p-10">
+        <div className="mx-auto max-w-screen-xl border px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-lg">
             <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
-              Get started today
+              LOGIN DASHBOARD
             </h1>
-            <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Obcaecati sunt dolores deleniti inventore quaerat mollitia?
-            </p>
+            <p className="mx-auto mt-4 max-w-md text-center text-gray-500"></p>
             {Status && (
               <div className="flex justify-center">
                 <div
@@ -75,7 +72,7 @@ const Login = () => {
               className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
             >
               <p className="text-center text-lg font-medium">
-                Sign in to your account
+                Sign in to your dashboard
               </p>
 
               <div>
@@ -138,13 +135,6 @@ const Login = () => {
               >
                 Sign in
               </button>
-
-              <p className="text-center text-sm text-gray-500">
-                No account?
-                <a className="underline" href="#">
-                  Sign up
-                </a>
-              </p>
             </form>
           </div>
           <Link to="/">

@@ -14,8 +14,8 @@ const Cars = () => {
     axios
       .get(`${import.meta.env.VITE_REACT_API_URL}/cars`)
       .then((response) => {
-        setCatalog(response.data.data);
-        console.log(response.data.data);
+        setCatalog(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -33,7 +33,7 @@ const Cars = () => {
       name: "Foto",
       selector: (row) => (
         <img
-          src={imgMobil}
+          src={row.url}
           alt={row.make + " " + row.model}
           style={{ width: "50px", height: "auto" }}
         />
@@ -70,9 +70,9 @@ const Cars = () => {
       selector: (row) => (
         <span
           className={`whitespace-nowrap rounded-full px-2.5 py-0.5 text-sm ${
-            row.status === "available"
+            row.status === "Available"
               ? "bg-green-100 text-green-700"
-              : row.status === "rented"
+              : row.status === "Rented"
               ? "bg-red-100 text-red-700"
               : "bg-yellow-100 text-yellow-700"
           }`}
@@ -86,7 +86,7 @@ const Cars = () => {
       name: "Action",
       cell: (row) => (
         <div className="flex justify-center items-center">
-          <Link to={`/edit/${row.car_id}`} className="btn btn-sm btn-primary">
+          <Link to={`/edit/${row.id}`} className="btn btn-sm btn-primary">
             Edit
           </Link>
           <button className="btn btn-sm btn-error">Hapus</button>

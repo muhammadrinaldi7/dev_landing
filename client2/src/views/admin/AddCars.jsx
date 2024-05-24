@@ -10,9 +10,16 @@ export const AddCars = () => {
   const [color, setColor] = useState("");
   const [registration_number, setRegistrationNumber] = useState("");
   const [daily_rate, setDailyRate] = useState("");
-  const [image_url, setImageUrl] = useState(null);
+  const [file, setFile] = useState(null);
   const [status, setStatus] = useState("Available");
+  const [preview, setPreview] = useState(null);
   const navigate = useNavigate();
+
+  const loadimage = (e) => {
+    const image = e.target.files[0];
+    setFile(image);
+    setPreview(URL.createObjectURL(image));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +31,7 @@ export const AddCars = () => {
     formData.append("color", color);
     formData.append("registration_number", registration_number);
     formData.append("daily_rate", daily_rate);
-    formData.append("image", image_url);
+    formData.append("file", file);
     formData.append("status", status);
 
     try {
@@ -149,10 +156,17 @@ export const AddCars = () => {
             <input
               type="file"
               className="file-input file-input-bordered file-input-primary w-full max-w-xs"
-              id="image_url"
-              onChange={(e) => setImageUrl(e.target.files[0])}
+              id="file"
+              onChange={(e) => loadimage(e)}
             />
           </div>
+          {preview ? (
+            <figure>
+              <img src={preview} alt="preview" className="w-20 h-20" />
+            </figure>
+          ) : (
+            "No image selected"
+          )}
           <div className="mt-6">
             <label
               className="block text-sm font-medium text-gray-700"

@@ -26,8 +26,8 @@ const ProductCard = ({ name, image, model, price, year, status }) => {
 
   return (
     <div className="max-w-sm w-full md:w-1/3 xl:w-1/4 p-8">
-      <div class="relative hover:scale-110 hover:shadow-md flex w-80 flex-col rounded-xl mb-4 bg-white bg-clip-border text-gray-700 shadow-md">
-        <div class="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600">
+      <div className="relative hover:scale-110 hover:shadow-md flex w-80 flex-col rounded-xl mb-4 bg-white bg-clip-border text-gray-700 shadow-md">
+        <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600">
           <img
             className="w-full flex-shrink-0 scale-90"
             style={{ height: "200px", objectFit: "cover" }}
@@ -35,20 +35,20 @@ const ProductCard = ({ name, image, model, price, year, status }) => {
             alt={name}
           />
         </div>
-        <div class="p-6">
-          <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+        <div className="p-6">
+          <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
             {`${model}  ${year}`}{" "}
             <span
-              class={`whitespace-nowrap rounded-full px-2.5 py-0.5 text-sm ${badgeStatus}`}
+              className={`whitespace-nowrap rounded-full px-2.5 py-0.5 text-sm ${badgeStatus}`}
             >
               {status}
             </span>
           </h5>
-          <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
+          <p className="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
             IDR. {price}
           </p>
         </div>
-        <div class="p-6 pt-0">
+        <div className="p-6 pt-0">
           <a
             href={whatsappUrl}
             onClick={handleClick}

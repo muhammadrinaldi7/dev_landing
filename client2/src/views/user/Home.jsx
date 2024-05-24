@@ -17,7 +17,7 @@ const Home = () => {
             srcset=""
           />
         </div>
-        <div className="flex flex-col items-center z-20 lg:mt-[9%] mt-[53%] justify-center text-center">
+        <div className="flex flex-col items-center lg:mt-[9%] mt-[53%] justify-center text-center">
           <h1 className="text-2xl lg:text-3xl font-extrabold text-white">
             Selamat Datang di{" "}
             <span className="text-[#FFC94A] italic">MASEDO RENT CAR</span>

@@ -7,11 +7,10 @@ import Contact from "./user/Contact";
 import handleSmoothScroll from "../components/Fungsi/SmoothScroll";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const API_URL = "http://localhost:3001/api/v1";
 const Homepage = () => {
   return (
     <>
-      <Navbar API_URL={API_URL} handleSmoothScroll={handleSmoothScroll} />
+      <Navbar handleSmoothScroll={handleSmoothScroll} />
       <Home />
       <Product />
       <About />
