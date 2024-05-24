@@ -37,6 +37,7 @@ export const saveCar = async (req, res) => {
   const ext = path.extname(file.name);
   const filename = file.md5 + ext;
   const url = `${req.protocol}://${req.get('host')}/images/${filename}`;
+  console.log(url);
 
   const allowedTypes = ['.jpg','.png','.jpeg','.gif'];
   if(!allowedTypes.includes(ext.toLowerCase())) return res.status(422).json({message: 'Image type not allowed'});
