@@ -36,7 +36,7 @@ export const saveCar = async (req, res) => {
   const filesize = file.data.length;
   const ext = path.extname(file.name);
   const filename = file.md5 + ext;
-  const url = `${req.protocol}://${req.get('host')}/images/${filename}`;
+  const url = `${import.meta.env.VITE_REACT_API_URL}/images/${filename}`;
   console.log(url);
 
   const allowedTypes = ['.jpg','.png','.jpeg','.gif'];
@@ -56,9 +56,9 @@ export const saveCar = async (req, res) => {
             url:url,
             status:status,
         });
-        res.status(201).json({message: 'Car created successfully'});
+        res.status(201).json({message: 'Car created successfully',url:url});
     } catch (error) {
-        res.status(501).json({message: error.message});
+        res.status(501).json({message: error.message,url:url});
     }
   });
 };
