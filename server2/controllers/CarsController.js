@@ -24,7 +24,7 @@ export const getCarById = async (req, res) => {
 };
 
 export const saveCar = async (req, res) => {
-  if(req.files ===null ) return res.status(400).json({message: 'No image uploaded'});
+  if(!req.files) return res.status(400).json({message: 'No image uploaded'});
   const make = req.body.make;
   const model = req.body.model;
   const year = req.body.year;
@@ -37,11 +37,16 @@ export const saveCar = async (req, res) => {
   const ext = path.extname(file.name);
   const filename = file.md5 + ext;
   const url = `${req.protocol}://${req.get('host')}/images/${filename}`;
-  console.log(url);
 
   const allowedTypes = ['.jpg','.png','.jpeg','.gif'];
   if(!allowedTypes.includes(ext.toLowerCase())) return res.status(422).json({message: 'Image type not allowed'});
   if(filesize > 5000000) return res.status(422).json({message: 'Image too large'});
+  try {
+    await fs.promises.access(`../public/images/${filename}`, fs.constants.F_OK);
+    return res.status(422).json({message: 'File already exists'});
+  } catch (err) {
+    // File does not exist
+  }
   file.mv(`../public/images/${filename}`,async(err)=>{
     if(err) return res.status(502).json({message: err.message+'Gagal pindah'});
     try {
