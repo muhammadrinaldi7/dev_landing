@@ -42,7 +42,7 @@ export const saveCar = async (req, res) => {
   const allowedTypes = ['.jpg','.png','.jpeg','.gif'];
   if(!allowedTypes.includes(ext.toLowerCase())) return res.status(422).json({message: 'Image type not allowed'});
   if(filesize > 5000000) return res.status(422).json({message: 'Image too large'});
-  file.mv(`./public/images/${filename}`,async(err)=>{
+  file.mv(`../public/images/${filename}`,async(err)=>{
     if(err) return res.status(502).json({message: err.message+'Gagal pindah'});
     try {
         await Cars.create({
