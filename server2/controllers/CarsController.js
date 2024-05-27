@@ -23,7 +23,7 @@ export const getCarById = async (req, res) => {
   }
 };
 
-const upload = multer({ dest: 'public/images/' });
+const upload = multer({ dest: '../public/images/' });
 export const saveCar = async (req, res) => {
   const { make, model, year, color, registration_number, daily_rate, status } = req.body;
   const { file } = req;
