@@ -1,5 +1,6 @@
 import Cars from "../models/CarsModel.js";
-import path from 'path';
+import path, { dirname } from 'path';
+import { fileURLToPath } from "url";
 import fs from 'fs';
 
 export const getAllCars = async (req, res) => {
@@ -23,8 +24,12 @@ export const getCarById = async (req, res) => {
   }
 };
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export const saveCar = async (req, res) => {
-  if(!req.files) return res.status(400).json({message: 'No image uploaded'});
+  if (!req.files) return res.status(400).json({ message: 'No image uploaded' });
+
   const make = req.body.make;
   const model = req.body.model;
   const year = req.body.year;
@@ -37,35 +42,33 @@ export const saveCar = async (req, res) => {
   const ext = path.extname(file.name);
   const filename = file.md5 + ext;
   const url = `${req.protocol}://${req.get('host')}/images/${filename}`;
+  
+  const allowedTypes = ['.jpg', '.png', '.jpeg', '.gif'];
+  if (!allowedTypes.includes(ext.toLowerCase())) return res.status(422).json({ message: 'Image type not allowed' });
+  if (filesize > 5000000) return res.status(422).json({ message: 'Image too large' });
 
-  const allowedTypes = ['.jpg','.png','.jpeg','.gif'];
-  if(!allowedTypes.includes(ext.toLowerCase())) return res.status(422).json({message: 'Image type not allowed'});
-  if(filesize > 5000000) return res.status(422).json({message: 'Image too large'});
+  const imagePath = path.join(__dirname, '../public/images', filename);
+
+  // Ensure the directory exists
+  fs.promises.mkdir(path.dirname(imagePath), { recursive: true }).catch(console.error);
+
   try {
-    await fs.promises.access(`../public/images/${filename}`, fs.constants.F_OK);
-    return res.status(422).json({message: 'File already exists'});
-  } catch (err) {
-    // File does not exist
+    await file.mv(imagePath);
+    await Cars.create({
+      make: make,
+      model: model,
+      year: year,
+      color: color,
+      registration_number: registration_number,
+      daily_rate: daily_rate,
+      image: filename,
+      url: url,
+      status: status,
+    });
+    res.status(201).json({ message: 'Car created successfully', url: url });
+  } catch (error) {
+    res.status(501).json({ message: error.message, url: url });
   }
-  file.mv(`../public/images/${filename}`,async(err)=>{
-    if(err) return res.status(502).json({message: err.message+'Gagal pindah'});
-    try {
-        await Cars.create({
-            make:make,
-            model:model,
-            year:year,
-            color:color,
-            registration_number:registration_number,
-            daily_rate:daily_rate,
-            image:filename,
-            url:url,
-            status:status,
-        });
-        res.status(201).json({message: 'Car created successfully',url:url});
-    } catch (error) {
-        res.status(501).json({message: error.message,url:url});
-    }
-  });
 };
 
 export const updateCar = async (req, res) => {
